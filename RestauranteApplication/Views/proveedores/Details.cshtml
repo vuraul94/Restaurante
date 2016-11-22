@@ -1,0 +1,52 @@
+﻿@model RestauranteApplication.Models.ProveedorMulti
+
+<div>
+    <h4>proveedores</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.proveedores.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proveedores.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proveedores.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proveedores.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proveedores.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proveedores.email)
+        </dd>
+
+        <dt>
+            telefono1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono1.telefono)
+        </dd>
+        
+        <dt>
+            telefono2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono2.telefono)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.proveedores.id_proveedor }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

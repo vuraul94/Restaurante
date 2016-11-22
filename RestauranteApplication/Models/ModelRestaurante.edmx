@@ -1,0 +1,1043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RestauranteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="moroso" Type="bit" />
+        </EntityType>
+        <EntityType Name="creditos">
+          <Key>
+            <PropertyRef Name="id_credito" />
+          </Key>
+          <Property Name="id_credito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="inicio" Type="date" />
+          <Property Name="vencimiento" Type="date" Nullable="false" />
+          <Property Name="cancelado" Type="bit" Nullable="false" />
+          <Property Name="fk_cliente" Type="varchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="factura_productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_factura" Type="int" />
+          <Property Name="fk_producto" Type="int" />
+        </EntityType>
+        <EntityType Name="factura_recetas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_factura" Type="int" />
+          <Property Name="fk_receta" Type="int" />
+        </EntityType>
+        <EntityType Name="facturas">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cliente" Type="varchar" MaxLength="100" />
+          <Property Name="credito" Type="bit" />
+          <Property Name="fk_cliente" Type="varchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ingreso" Type="date" Nullable="false" />
+          <Property Name="vencimiento" Type="date" Nullable="false" />
+          <Property Name="fk_proveedor" Type="varchar" MaxLength="24" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos_rel_recetas">
+          <Key>
+            <PropertyRef Name="fk_producto" />
+            <PropertyRef Name="fk_receta" />
+          </Key>
+          <Property Name="fk_producto" Type="int" Nullable="false" />
+          <Property Name="fk_receta" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="unidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor_telefonos">
+          <Key>
+            <PropertyRef Name="id_p_t" />
+          </Key>
+          <Property Name="id_p_t" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="fk_proveedor" Type="varchar" MaxLength="24" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recetas">
+          <Key>
+            <PropertyRef Name="id_receta" />
+          </Key>
+          <Property Name="id_receta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__creditos__fk_cli__38996AB5">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="creditos" Type="Self.creditos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="creditos">
+              <PropertyRef Name="fk_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_p__fk_fa__3C69FB99">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
+          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="factura_productos">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_p__fk_pr__3A81B327">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="factura_productos">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_r__fk_fa__3D5E1FD2">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
+          <End Role="factura_recetas" Type="Self.factura_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="factura_recetas">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_r__fk_re__3B75D760">
+          <End Role="recetas" Type="Self.recetas" Multiplicity="0..1" />
+          <End Role="factura_recetas" Type="Self.factura_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recetas">
+              <PropertyRef Name="id_receta" />
+            </Principal>
+            <Dependent Role="factura_recetas">
+              <PropertyRef Name="fk_receta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__facturas__fk_cli__398D8EEE">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_pr__35BCFE0A">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_pr__36B12243">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="productos_rel_recetas" Type="Self.productos_rel_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="productos_rel_recetas">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_re__37A5467C">
+          <End Role="recetas" Type="Self.recetas" Multiplicity="1" />
+          <End Role="productos_rel_recetas" Type="Self.productos_rel_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recetas">
+              <PropertyRef Name="id_receta" />
+            </Principal>
+            <Dependent Role="productos_rel_recetas">
+              <PropertyRef Name="fk_receta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proveedor__fk_pr__34C8D9D1">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+          <End Role="proveedor_telefonos" Type="Self.proveedor_telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="proveedor_telefonos">
+              <PropertyRef Name="fk_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestauranteModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="creditos" EntityType="Self.creditos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="factura_productos" EntityType="Self.factura_productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="factura_recetas" EntityType="Self.factura_recetas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facturas" EntityType="Self.facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos_rel_recetas" EntityType="Self.productos_rel_recetas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor_telefonos" EntityType="Self.proveedor_telefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recetas" EntityType="Self.recetas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__creditos__fk_cli__38996AB5" Association="Self.FK__creditos__fk_cli__38996AB5">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="creditos" EntitySet="creditos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_p__fk_fa__3C69FB99" Association="Self.FK__factura_p__fk_fa__3C69FB99">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="factura_productos" EntitySet="factura_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_p__fk_pr__3A81B327" Association="Self.FK__factura_p__fk_pr__3A81B327">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="factura_productos" EntitySet="factura_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_r__fk_fa__3D5E1FD2" Association="Self.FK__factura_r__fk_fa__3D5E1FD2">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="factura_recetas" EntitySet="factura_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_r__fk_re__3B75D760" Association="Self.FK__factura_r__fk_re__3B75D760">
+            <End Role="recetas" EntitySet="recetas" />
+            <End Role="factura_recetas" EntitySet="factura_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__facturas__fk_cli__398D8EEE" Association="Self.FK__facturas__fk_cli__398D8EEE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_pr__35BCFE0A" Association="Self.FK__productos__fk_pr__35BCFE0A">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_pr__36B12243" Association="Self.FK__productos__fk_pr__36B12243">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="productos_rel_recetas" EntitySet="productos_rel_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_re__37A5467C" Association="Self.FK__productos__fk_re__37A5467C">
+            <End Role="recetas" EntitySet="recetas" />
+            <End Role="productos_rel_recetas" EntitySet="productos_rel_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proveedor__fk_pr__34C8D9D1" Association="Self.FK__proveedor__fk_pr__34C8D9D1">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="proveedor_telefonos" EntitySet="proveedor_telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="moroso" Type="Boolean" />
+          <NavigationProperty Name="creditos" Relationship="Self.FK__creditos__fk_cli__38996AB5" FromRole="clientes" ToRole="creditos" />
+          <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__fk_cli__398D8EEE" FromRole="clientes" ToRole="facturas" />
+        </EntityType>
+        <EntityType Name="creditos">
+          <Key>
+            <PropertyRef Name="id_credito" />
+          </Key>
+          <Property Name="id_credito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="inicio" Type="DateTime" Precision="0" />
+          <Property Name="vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cancelado" Type="Boolean" Nullable="false" />
+          <Property Name="fk_cliente" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.FK__creditos__fk_cli__38996AB5" FromRole="creditos" ToRole="clientes" />
+        </EntityType>
+        <EntityType Name="factura_productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_factura" Type="Int32" />
+          <Property Name="fk_producto" Type="Int32" />
+          <NavigationProperty Name="facturas" Relationship="Self.FK__factura_p__fk_fa__3C69FB99" FromRole="factura_productos" ToRole="facturas" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__factura_p__fk_pr__3A81B327" FromRole="factura_productos" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="factura_recetas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_factura" Type="Int32" />
+          <Property Name="fk_receta" Type="Int32" />
+          <NavigationProperty Name="facturas" Relationship="Self.FK__factura_r__fk_fa__3D5E1FD2" FromRole="factura_recetas" ToRole="facturas" />
+          <NavigationProperty Name="recetas" Relationship="Self.FK__factura_r__fk_re__3B75D760" FromRole="factura_recetas" ToRole="recetas" />
+        </EntityType>
+        <EntityType Name="facturas">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="credito" Type="Boolean" />
+          <Property Name="fk_cliente" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.FK__facturas__fk_cli__398D8EEE" FromRole="facturas" ToRole="clientes" />
+          <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__fk_fa__3C69FB99" FromRole="facturas" ToRole="factura_productos" />
+          <NavigationProperty Name="factura_recetas" Relationship="Self.FK__factura_r__fk_fa__3D5E1FD2" FromRole="facturas" ToRole="factura_recetas" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fk_proveedor" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__fk_pr__3A81B327" FromRole="productos" ToRole="factura_productos" />
+          <NavigationProperty Name="proveedores" Relationship="Self.FK__productos__fk_pr__35BCFE0A" FromRole="productos" ToRole="proveedores" />
+          <NavigationProperty Name="productos_rel_recetas" Relationship="Self.FK__productos__fk_pr__36B12243" FromRole="productos" ToRole="productos_rel_recetas" />
+        </EntityType>
+        <EntityType Name="productos_rel_recetas">
+          <Key>
+            <PropertyRef Name="fk_producto" />
+            <PropertyRef Name="fk_receta" />
+          </Key>
+          <Property Name="fk_producto" Type="Int32" Nullable="false" />
+          <Property Name="fk_receta" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="unidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__productos__fk_pr__36B12243" FromRole="productos_rel_recetas" ToRole="productos" />
+          <NavigationProperty Name="recetas" Relationship="Self.FK__productos__fk_re__37A5467C" FromRole="productos_rel_recetas" ToRole="recetas" />
+        </EntityType>
+        <EntityType Name="proveedor_telefonos">
+          <Key>
+            <PropertyRef Name="id_p_t" />
+          </Key>
+          <Property Name="id_p_t" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_proveedor" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="proveedores" Relationship="Self.FK__proveedor__fk_pr__34C8D9D1" FromRole="proveedor_telefonos" ToRole="proveedores" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__productos__fk_pr__35BCFE0A" FromRole="proveedores" ToRole="productos" />
+          <NavigationProperty Name="proveedor_telefonos" Relationship="Self.FK__proveedor__fk_pr__34C8D9D1" FromRole="proveedores" ToRole="proveedor_telefonos" />
+        </EntityType>
+        <EntityType Name="recetas">
+          <Key>
+            <PropertyRef Name="id_receta" />
+          </Key>
+          <Property Name="id_receta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="factura_recetas" Relationship="Self.FK__factura_r__fk_re__3B75D760" FromRole="recetas" ToRole="factura_recetas" />
+          <NavigationProperty Name="productos_rel_recetas" Relationship="Self.FK__productos__fk_re__37A5467C" FromRole="recetas" ToRole="productos_rel_recetas" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__creditos__fk_cli__38996AB5">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="creditos" Type="Self.creditos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="creditos">
+              <PropertyRef Name="fk_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__facturas__fk_cli__398D8EEE">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_p__fk_fa__3C69FB99">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
+          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="factura_productos">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_p__fk_pr__3A81B327">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="factura_productos">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_r__fk_fa__3D5E1FD2">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
+          <End Role="factura_recetas" Type="Self.factura_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="factura_recetas">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factura_r__fk_re__3B75D760">
+          <End Role="recetas" Type="Self.recetas" Multiplicity="0..1" />
+          <End Role="factura_recetas" Type="Self.factura_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recetas">
+              <PropertyRef Name="id_receta" />
+            </Principal>
+            <Dependent Role="factura_recetas">
+              <PropertyRef Name="fk_receta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_pr__35BCFE0A">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_pr__36B12243">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="productos_rel_recetas" Type="Self.productos_rel_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="productos_rel_recetas">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__productos__fk_re__37A5467C">
+          <End Role="recetas" Type="Self.recetas" Multiplicity="1" />
+          <End Role="productos_rel_recetas" Type="Self.productos_rel_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recetas">
+              <PropertyRef Name="id_receta" />
+            </Principal>
+            <Dependent Role="productos_rel_recetas">
+              <PropertyRef Name="fk_receta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__proveedor__fk_pr__34C8D9D1">
+          <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+          <End Role="proveedor_telefonos" Type="Self.proveedor_telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedores">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="proveedor_telefonos">
+              <PropertyRef Name="fk_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RestauranteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" />
+          <EntitySet Name="creditos" EntityType="Self.creditos" />
+          <EntitySet Name="factura_productos" EntityType="Self.factura_productos" />
+          <EntitySet Name="factura_recetas" EntityType="Self.factura_recetas" />
+          <EntitySet Name="facturas" EntityType="Self.facturas" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="productos_rel_recetas" EntityType="Self.productos_rel_recetas" />
+          <EntitySet Name="proveedor_telefonos" EntityType="Self.proveedor_telefonos" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" />
+          <EntitySet Name="recetas" EntityType="Self.recetas" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__creditos__fk_cli__38996AB5" Association="Self.FK__creditos__fk_cli__38996AB5">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="creditos" EntitySet="creditos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__facturas__fk_cli__398D8EEE" Association="Self.FK__facturas__fk_cli__398D8EEE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_p__fk_fa__3C69FB99" Association="Self.FK__factura_p__fk_fa__3C69FB99">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="factura_productos" EntitySet="factura_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_p__fk_pr__3A81B327" Association="Self.FK__factura_p__fk_pr__3A81B327">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="factura_productos" EntitySet="factura_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_r__fk_fa__3D5E1FD2" Association="Self.FK__factura_r__fk_fa__3D5E1FD2">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="factura_recetas" EntitySet="factura_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factura_r__fk_re__3B75D760" Association="Self.FK__factura_r__fk_re__3B75D760">
+            <End Role="recetas" EntitySet="recetas" />
+            <End Role="factura_recetas" EntitySet="factura_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_pr__35BCFE0A" Association="Self.FK__productos__fk_pr__35BCFE0A">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_pr__36B12243" Association="Self.FK__productos__fk_pr__36B12243">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="productos_rel_recetas" EntitySet="productos_rel_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__productos__fk_re__37A5467C" Association="Self.FK__productos__fk_re__37A5467C">
+            <End Role="recetas" EntitySet="recetas" />
+            <End Role="productos_rel_recetas" EntitySet="productos_rel_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__proveedor__fk_pr__34C8D9D1" Association="Self.FK__proveedor__fk_pr__34C8D9D1">
+            <End Role="proveedores" EntitySet="proveedores" />
+            <End Role="proveedor_telefonos" EntitySet="proveedor_telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestauranteModelStoreContainer" CdmEntityContainer="RestauranteEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="RestauranteModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="RestauranteModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="RestauranteModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="RestauranteModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="RestauranteModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="RestauranteModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="moroso" ColumnName="moroso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="creditos">
+            <EntityTypeMapping TypeName="RestauranteModel.creditos">
+              <MappingFragment StoreEntitySet="creditos">
+                <ScalarProperty Name="id_credito" ColumnName="id_credito" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+                <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+                <ScalarProperty Name="fk_cliente" ColumnName="fk_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="factura_productos">
+            <EntityTypeMapping TypeName="RestauranteModel.factura_productos">
+              <MappingFragment StoreEntitySet="factura_productos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_factura" ColumnName="fk_factura" />
+                <ScalarProperty Name="fk_producto" ColumnName="fk_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="factura_recetas">
+            <EntityTypeMapping TypeName="RestauranteModel.factura_recetas">
+              <MappingFragment StoreEntitySet="factura_recetas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_factura" ColumnName="fk_factura" />
+                <ScalarProperty Name="fk_receta" ColumnName="fk_receta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facturas">
+            <EntityTypeMapping TypeName="RestauranteModel.facturas">
+              <MappingFragment StoreEntitySet="facturas">
+                <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
+                <ScalarProperty Name="fk_cliente" ColumnName="fk_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="RestauranteModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="ingreso" ColumnName="ingreso" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+                <ScalarProperty Name="fk_proveedor" ColumnName="fk_proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos_rel_recetas">
+            <EntityTypeMapping TypeName="RestauranteModel.productos_rel_recetas">
+              <MappingFragment StoreEntitySet="productos_rel_recetas">
+                <ScalarProperty Name="fk_producto" ColumnName="fk_producto" />
+                <ScalarProperty Name="fk_receta" ColumnName="fk_receta" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="unidad" ColumnName="unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedor_telefonos">
+            <EntityTypeMapping TypeName="RestauranteModel.proveedor_telefonos">
+              <MappingFragment StoreEntitySet="proveedor_telefonos">
+                <ScalarProperty Name="id_p_t" ColumnName="id_p_t" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fk_proveedor" ColumnName="fk_proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedores">
+            <EntityTypeMapping TypeName="RestauranteModel.proveedores">
+              <MappingFragment StoreEntitySet="proveedores">
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recetas">
+            <EntityTypeMapping TypeName="RestauranteModel.recetas">
+              <MappingFragment StoreEntitySet="recetas">
+                <ScalarProperty Name="id_receta" ColumnName="id_receta" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RestauranteModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="RestauranteModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
