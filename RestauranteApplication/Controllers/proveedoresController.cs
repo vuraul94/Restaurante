@@ -22,7 +22,7 @@ namespace RestauranteApplication.Controllers
             List<ProveedorMulti> listaProveedores= new List<ProveedorMulti>();
             foreach (var proveedor in db.proveedores.ToList())
             {
-                ProveedorMulti elementoProveedor= new ProveedorMulti();
+                ProveedorMulti elementoProveedor = new ProveedorMulti();
                 IQueryable<proveedor_telefonos> telefonos = db.proveedor_telefonos.Where(proveedor_telefonos => proveedor_telefonos.fk_proveedor == proveedor.id_proveedor);
                 elementoProveedor.proveedores = proveedor;
                 int contador = 1;
