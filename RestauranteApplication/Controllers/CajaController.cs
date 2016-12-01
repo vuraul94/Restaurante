@@ -15,7 +15,7 @@ namespace RestauranteApplication.Controllers
     public class CajaController : Controller
     {
         private RestauranteEntities db = new RestauranteEntities();
-        List<productos> productos_en_caja;
+        private List<productos> productos_en_caja;
         // GET: Caja
         public ActionResult Index()
         {
