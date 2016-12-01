@@ -1,8 +1,9 @@
 ﻿<h2>Caja</h2>
 
 <div class="container">
-
-    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+    
+@using (Html.BeginForm("agregar_a_caja", "Caja", FormMethod.Post, new { @class= "well form-horizontal", @id = "contact_form" }))
+{
         <fieldset>
 
 
@@ -11,12 +12,12 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                        <input name="id" placeholder="ID" class="form-control" type="text">
+                        @Html.Editor("id_producto", new { htmlAttributes = new { @class = "form-control", @name = "id", @placeholder = "ID" } })
                     </div>
                 </div>
             </div>
 
-          
+
             <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
@@ -26,7 +27,7 @@
             </div>
 
         </fieldset>
-    </form>
+}
 </div>
    
 <div class="container">
@@ -40,24 +41,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @foreach (var producto in ViewBag.productos_caja)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@producto.id_producto</td>
+                    <td>@producto.nombre</td>
+                    <td>@producto.precio</td>
+                </tr>
+            }
         </tbody>
     </table>
     <div class="form-group">
