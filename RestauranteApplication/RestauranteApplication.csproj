@@ -175,10 +175,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\productosController.cs" />
     <Compile Include="Controllers\proveedoresController.cs" />
+    <Compile Include="Controllers\recetasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,9 +210,6 @@
       <DependentUpon>ModelRestaurante.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\factura_productos.cs">
-      <DependentUpon>ModelRestaurante.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\factura_recetas.cs">
       <DependentUpon>ModelRestaurante.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -244,6 +243,7 @@
     <Compile Include="Models\proveedor_telefonos.cs">
       <DependentUpon>ModelRestaurante.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecetaMulti.cs" />
     <Compile Include="Models\recetas.cs">
       <DependentUpon>ModelRestaurante.tt</DependentUpon>
     </Compile>
@@ -337,6 +337,12 @@
     <Content Include="Views\productos\Details.cshtml" />
     <Content Include="Views\productos\Edit.cshtml" />
     <Content Include="Views\productos\Index.cshtml" />
+    <Content Include="Views\recetas\Create.cshtml" />
+    <Content Include="Views\recetas\Delete.cshtml" />
+    <Content Include="Views\recetas\Details.cshtml" />
+    <Content Include="Views\recetas\Edit.cshtml" />
+    <Content Include="Views\recetas\Index.cshtml" />
+    <Content Include="Views\Caja\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
