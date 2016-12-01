@@ -16,10 +16,11 @@ namespace RestauranteApplication.Controllers
     {
         private RestauranteEntities db = new RestauranteEntities();
         private List<productos> productos_en_caja = new List<productos>();
+
         // GET: Caja
         public ActionResult Index()
         {
-            ViewBag.productos_caja = productos_en_caja;
+            Session["productos_caja"] = new List<productos>();
             return View();
         }
 
@@ -28,8 +29,10 @@ namespace RestauranteApplication.Controllers
             if (id_producto !=null)
             {
                 productos producto = db.productos.Find(id_producto);
+                productos_en_caja = (List<productos>) Session["productos_caja"];
                 productos_en_caja.Add(producto);
-                ViewBag.productos_caja=productos_en_caja;
+                Session["productos_caja"] = productos_en_caja;
+                ViewBag.productos_caja = Session["productos_caja"];
             }
 
             return View("Index");

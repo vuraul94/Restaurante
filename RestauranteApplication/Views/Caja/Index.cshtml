@@ -1,4 +1,6 @@
-﻿<h2>Caja</h2>
+﻿@using RestauranteApplication.Models
+
+<h2>Caja</h2>
 
 <div class="container">
     
@@ -16,7 +18,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Button -->
             <div class="form-group">
@@ -41,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var producto in ViewBag.productos_caja)
+            @foreach (var producto in (List<productos>)Session["productos_caja"])
             {
                 <tr>
                     <th scope="row">1</th>
