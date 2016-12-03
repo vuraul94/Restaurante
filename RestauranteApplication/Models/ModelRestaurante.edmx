@@ -94,17 +94,17 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fk_factura" Type="int" />
+          <Property Name="fk_factura" Type="varchar" MaxLength="100" />
           <Property Name="fk_producto" Type="int" />
         </EntityType>
         <EntityType Name="facturas">
           <Key>
             <PropertyRef Name="id_factura" />
           </Key>
-          <Property Name="id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cliente" Type="varchar" MaxLength="100" />
-          <Property Name="credito" Type="bit" />
+          <Property Name="id_factura" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fk_cliente" Type="varchar" MaxLength="24" />
+          <Property Name="credito" Type="bit" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="productos">
           <Key>
@@ -176,31 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__factura_p__fk_fa__3C69FB99">
-          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
-          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="facturas">
-              <PropertyRef Name="id_factura" />
-            </Principal>
-            <Dependent Role="factura_productos">
-              <PropertyRef Name="fk_factura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__factura_p__fk_pr__3A81B327">
-          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
-          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="factura_productos">
-              <PropertyRef Name="fk_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__facturas__fk_cli__398D8EEE">
+        <Association Name="FK__facturas__fk_cli__6FE99F9F">
           <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
           <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -349,15 +325,7 @@
             <End Role="clientes" EntitySet="clientes" />
             <End Role="creditos" EntitySet="creditos" />
           </AssociationSet>
-          <AssociationSet Name="FK__factura_p__fk_fa__3C69FB99" Association="Self.FK__factura_p__fk_fa__3C69FB99">
-            <End Role="facturas" EntitySet="facturas" />
-            <End Role="factura_productos" EntitySet="factura_productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__factura_p__fk_pr__3A81B327" Association="Self.FK__factura_p__fk_pr__3A81B327">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="factura_productos" EntitySet="factura_productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__facturas__fk_cli__398D8EEE" Association="Self.FK__facturas__fk_cli__398D8EEE">
+          <AssociationSet Name="FK__facturas__fk_cli__6FE99F9F" Association="Self.FK__facturas__fk_cli__6FE99F9F">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="facturas" EntitySet="facturas" />
           </AssociationSet>
@@ -474,7 +442,7 @@
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="moroso" Type="Boolean" />
           <NavigationProperty Name="creditos" Relationship="Self.FK__creditos__fk_cli__38996AB5" FromRole="clientes" ToRole="creditos" />
-          <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__fk_cli__398D8EEE" FromRole="clientes" ToRole="facturas" />
+          <NavigationProperty Name="facturas" Relationship="Self.FK__facturas__fk_cli__6FE99F9F" FromRole="clientes" ToRole="facturas" />
         </EntityType>
         <EntityType Name="creditos">
           <Key>
@@ -493,21 +461,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fk_factura" Type="Int32" />
+          <Property Name="fk_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fk_producto" Type="Int32" />
-          <NavigationProperty Name="facturas" Relationship="Self.FK__factura_p__fk_fa__3C69FB99" FromRole="factura_productos" ToRole="facturas" />
-          <NavigationProperty Name="productos" Relationship="Self.FK__factura_p__fk_pr__3A81B327" FromRole="factura_productos" ToRole="productos" />
         </EntityType>
         <EntityType Name="facturas">
           <Key>
             <PropertyRef Name="id_factura" />
           </Key>
-          <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="credito" Type="Boolean" />
+          <Property Name="id_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fk_cliente" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="clientes" Relationship="Self.FK__facturas__fk_cli__398D8EEE" FromRole="facturas" ToRole="clientes" />
-          <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__fk_fa__3C69FB99" FromRole="facturas" ToRole="factura_productos" />
+          <Property Name="credito" Type="Boolean" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="clientes" Relationship="Self.FK__facturas__fk_cli__6FE99F9F" FromRole="facturas" ToRole="clientes" />
         </EntityType>
         <EntityType Name="productos">
           <Key>
@@ -520,7 +485,6 @@
           <Property Name="ingreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="vencimiento" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fk_proveedor" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="factura_productos" Relationship="Self.FK__factura_p__fk_pr__3A81B327" FromRole="productos" ToRole="factura_productos" />
           <NavigationProperty Name="proveedores" Relationship="Self.FK__productos__fk_pr__35BCFE0A" FromRole="productos" ToRole="proveedores" />
           <NavigationProperty Name="productos_rel_recetas" Relationship="Self.FK__productos__fk_pr__36B12243" FromRole="productos" ToRole="productos_rel_recetas" />
           <NavigationProperty Name="recetas" Relationship="Self.FK__recetas__fk_prod__5AEE82B9" FromRole="productos" ToRole="recetas" />
@@ -618,7 +582,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__facturas__fk_cli__398D8EEE">
+        <Association Name="FK__facturas__fk_cli__6FE99F9F">
           <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
           <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -627,30 +591,6 @@
             </Principal>
             <Dependent Role="facturas">
               <PropertyRef Name="fk_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__factura_p__fk_fa__3C69FB99">
-          <End Role="facturas" Type="Self.facturas" Multiplicity="0..1" />
-          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="facturas">
-              <PropertyRef Name="id_factura" />
-            </Principal>
-            <Dependent Role="factura_productos">
-              <PropertyRef Name="fk_factura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__factura_p__fk_pr__3A81B327">
-          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
-          <End Role="factura_productos" Type="Self.factura_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="factura_productos">
-              <PropertyRef Name="fk_producto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -746,17 +686,9 @@
             <End Role="clientes" EntitySet="clientes" />
             <End Role="creditos" EntitySet="creditos" />
           </AssociationSet>
-          <AssociationSet Name="FK__facturas__fk_cli__398D8EEE" Association="Self.FK__facturas__fk_cli__398D8EEE">
+          <AssociationSet Name="FK__facturas__fk_cli__6FE99F9F" Association="Self.FK__facturas__fk_cli__6FE99F9F">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="facturas" EntitySet="facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__factura_p__fk_fa__3C69FB99" Association="Self.FK__factura_p__fk_fa__3C69FB99">
-            <End Role="facturas" EntitySet="facturas" />
-            <End Role="factura_productos" EntitySet="factura_productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__factura_p__fk_pr__3A81B327" Association="Self.FK__factura_p__fk_pr__3A81B327">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="factura_productos" EntitySet="factura_productos" />
           </AssociationSet>
           <AssociationSet Name="FK__productos__fk_pr__35BCFE0A" Association="Self.FK__productos__fk_pr__35BCFE0A">
             <End Role="proveedores" EntitySet="proveedores" />
@@ -882,9 +814,9 @@
             <EntityTypeMapping TypeName="RestauranteModel.facturas">
               <MappingFragment StoreEntitySet="facturas">
                 <ScalarProperty Name="id_factura" ColumnName="id_factura" />
-                <ScalarProperty Name="cliente" ColumnName="cliente" />
-                <ScalarProperty Name="credito" ColumnName="credito" />
                 <ScalarProperty Name="fk_cliente" ColumnName="fk_cliente" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

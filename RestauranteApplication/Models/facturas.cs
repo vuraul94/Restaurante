@@ -14,19 +14,11 @@ namespace RestauranteApplication.Models
     
     public partial class facturas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public facturas()
-        {
-            this.factura_productos = new HashSet<factura_productos>();
-        }
-    
-        public int id_factura { get; set; }
-        public string cliente { get; set; }
-        public Nullable<bool> credito { get; set; }
+        public string id_factura { get; set; }
         public string fk_cliente { get; set; }
+        public Nullable<bool> credito { get; set; }
+        public Nullable<decimal> total { get; set; }
     
         public virtual clientes clientes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<factura_productos> factura_productos { get; set; }
     }
 }

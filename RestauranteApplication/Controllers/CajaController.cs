@@ -21,21 +21,53 @@ namespace RestauranteApplication.Controllers
         public ActionResult Index()
         {
             Session["productos_caja"] = new List<productos>();
+            ViewBag.total = 0;
             return View();
         }
 
         public ActionResult agregar_a_caja(int? id_producto)
         {
-            if (id_producto !=null)
+            if (id_producto != null)
             {
                 productos producto = db.productos.Find(id_producto);
-                productos_en_caja = (List<productos>) Session["productos_caja"];
+                productos_en_caja = (List<productos>)Session["productos_caja"];
                 productos_en_caja.Add(producto);
                 Session["productos_caja"] = productos_en_caja;
                 ViewBag.productos_caja = Session["productos_caja"];
+                ViewBag.total = 0;
+                foreach (var product in (List<productos>)Session["productos_caja"])
+                {
+                    ViewBag.total += product.precio;
+                    Session["total"] = ViewBag.total;
+                }
             }
 
             return View("Index");
         }
+
+        public ActionResult facturar(string id_cliente)
+        {
+            string id_factura = "fact-" + DateTime.UtcNow.ToString().Replace("/", "").Replace(" ", "").Replace(":", "").Replace("am", "").Replace("pm", "");
+            facturas factura = new facturas();
+            factura.id_factura = id_factura;
+            factura.fk_cliente = id_cliente;
+            factura.credito = false;
+            factura.total= (decimal?) Session["total"];
+            db.facturas.Add(factura);
+            foreach (var producto in (List<productos>)Session["productos_caja"])
+            {
+                factura_productos fact_pro = new factura_productos();
+                fact_pro.fk_factura = id_factura;
+                fact_pro.fk_producto = producto.id_producto;
+                db.factura_productos.Add(fact_pro);
+            }
+            db.SaveChanges();
+
+            productos_en_caja = new List<productos>();
+            Session["productos_caja"] = productos_en_caja;
+            ViewBag.total = 0;
+            return View("Index");
+        }
+
     }
 }

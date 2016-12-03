@@ -4,28 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d78cb2f5265f483986a251994a223e02" Name="Diagram1">
-        <EntityTypeShape EntityType="RestauranteModel.C__MigrationHistory" Width="1.5" PointX="9.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.AspNetRoles" Width="1.5" PointX="7.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.AspNetUserClaims" Width="1.5" PointX="12.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.AspNetUserLogins" Width="1.5" PointX="12.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.AspNetUsers" Width="1.5" PointX="10" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.clientes" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.creditos" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.factura_productos" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.facturas" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.productos" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.productos_rel_recetas" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.proveedor_telefonos" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.proveedores" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.recetas" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestauranteModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="10.375" IsExpanded="true" />
+      <Diagram DiagramId="0e25de4c660f4c7881a41ef4d7963b20" Name="Diagram1">
+        <EntityTypeShape EntityType="RestauranteModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.AspNetRoles" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.AspNetUserClaims" Width="1.5" PointX="12.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.AspNetUserLogins" Width="1.5" PointX="12.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.AspNetUsers" Width="1.5" PointX="10" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.clientes" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.creditos" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.factura_productos" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.facturas" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.productos" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.productos_rel_recetas" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.proveedor_telefonos" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.proveedores" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.recetas" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestauranteModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="RestauranteModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="RestauranteModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="RestauranteModel.FK__creditos__fk_cli__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="RestauranteModel.FK__facturas__fk_cli__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="RestauranteModel.FK__factura_p__fk_fa__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="RestauranteModel.FK__factura_p__fk_pr__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="RestauranteModel.FK__facturas__fk_cli__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="RestauranteModel.FK__productos__fk_pr__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="RestauranteModel.FK__productos__fk_pr__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="RestauranteModel.FK__recetas__fk_prod__5AEE82B9" ManuallyRouted="false" />

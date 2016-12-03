@@ -15,10 +15,7 @@ namespace RestauranteApplication.Models
     public partial class factura_productos
     {
         public int id { get; set; }
-        public Nullable<int> fk_factura { get; set; }
+        public string fk_factura { get; set; }
         public Nullable<int> fk_producto { get; set; }
-    
-        public virtual facturas facturas { get; set; }
-        public virtual productos productos { get; set; }
     }
 }
