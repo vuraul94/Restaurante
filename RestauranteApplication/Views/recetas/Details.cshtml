@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3>Detalles de receta</h3>
 
 <div>
-    <h4>recetas</h4>
+    <br />
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,10 +25,17 @@
         <dd>
             @Html.DisplayFor(model => model.nombre)
         </dd>
+        <dt>
+            <p>Producto</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_producto_padre)
+        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_receta }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.id_receta }) |
+    @Html.ActionLink("Volver a la lista de recetas", "Index")
 </p>

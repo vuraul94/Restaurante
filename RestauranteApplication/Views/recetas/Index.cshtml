@@ -1,37 +1,48 @@
-﻿@model IEnumerable<RestauranteApplication.Models.recetas>
+﻿@model IEnumerable<RestauranteApplication.Models.RecetaMulti>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Recetas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar receta", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.precio)
+            @Html.DisplayNameFor(model => model.recetas.precio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.recetas.nombre)
         </th>
-        <th></th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Ingredientes
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.precio)
+            @Html.DisplayFor(modelItem => item.recetas.precio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.recetas.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_receta }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_receta }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_receta })
+            @Html.DisplayFor(modelItem => item.productoFK.nombre)
+        </td>
+        <td>
+            @ViewBag.ing
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id=item.recetas.id_receta }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.recetas.id_receta }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.recetas.id_receta })
         </td>
     </tr>
 }

@@ -31,13 +31,21 @@
         </div>
 
         <div class="form-group">
+            <label for="prodID"  class="control-label col-md-2">Producto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fk_producto_padre, new { htmlAttributes = new { @id = "prodID", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fk_producto_padre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Agregar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista de recetas", "Index")
 </div>
