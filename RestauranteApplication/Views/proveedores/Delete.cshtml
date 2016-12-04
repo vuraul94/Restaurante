@@ -40,3 +40,7 @@
         </div>
     }
 </div>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

@@ -51,3 +51,7 @@
 <div>
     @Html.ActionLink("Volver a la lista de recetas", "Index")
 </div>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

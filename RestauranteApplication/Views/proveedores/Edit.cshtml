@@ -69,3 +69,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

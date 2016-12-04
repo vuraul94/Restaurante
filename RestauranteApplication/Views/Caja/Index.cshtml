@@ -1,71 +1,77 @@
 ﻿@using RestauranteApplication.Models
 
-<h2>Caja</h2>
 
-<div class="container">
-    
-@using (Html.BeginForm("agregar_a_caja", "Caja", FormMethod.Post, new { @class= "well form-horizontal", @id = "contact_form" }))
-{
-        <fieldset>
+    <h2>Caja</h2>
+
+    <div class="container">
+
+        @using (Html.BeginForm("agregar_a_caja", "Caja", FormMethod.Post, new {@class = "well form-horizontal", @id = "contact_form"}))
+        {
+            <fieldset>
 
 
-            <div class="form-group">
-                <label class="col-md-4 control-label">Código</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                        @Html.Editor("id_producto", new { htmlAttributes = new { @class = "form-control", @name = "id", @placeholder = "ID" } })
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Código</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            @Html.Editor("id_producto", new {htmlAttributes = new {@class = "form-control", @name = "id", @placeholder = "ID"}})
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning">Agregar <span class="glyphicon glyphicon-plus"></span></button>
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-warning">Agregar <span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
                 </div>
-            </div>
 
-        </fieldset>
-}
-</div>
-   
-<div class="container">
-    <table class="table table-striped">
-        <thead class="thead-inverse">
-        <tr>
-            <th>#</th>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var producto in (List<productos>)Session["productos_caja"])
-        {
-            <tr>
-                <th scope="row">1</th>
-                <td>@producto.id_producto</td>
-                <td>@producto.nombre</td>
-                <td>@producto.precio</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-    <h2 style="display: inline;">Total: </h2><h3 style="display: inline;">@ViewBag.total</h3>
-    <div class="form-group">
-        @using (Html.BeginForm("facturar", "Caja", FormMethod.Post, new { @class = "well form-horizontal", @id = "contact_form" }))
-        {
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                @Html.Editor("id_cliente", new { htmlAttributes = new { @class = "form-control", @name = "id_cliente", @placeholder = "ID CLIENTE" } })
-            </div>
-
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-success">Enviar <span class="glyphicon glyphicon-send"></span></button>
-            </div>
+            </fieldset>
         }
     </div>
-</div>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var producto in (List<productos>) Session["productos_caja"])
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@producto.id_producto</td>
+                    <td>@producto.nombre</td>
+                    <td>@producto.precio</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <h2 style="display: inline;">Total: </h2>
+        <h3 style="display: inline;">@ViewBag.total</h3>
+        <div class="form-group">
+            @using (Html.BeginForm("facturar", "Caja", FormMethod.Post, new {@class = "well form-horizontal", @id = "contact_form"}))
+            {
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    @Html.Editor("id_cliente", new {htmlAttributes = new {@class = "form-control", @name = "id_cliente", @placeholder = "ID CLIENTE"}})
+                </div>
+
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success">Enviar <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            }
+        </div>
+    </div>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

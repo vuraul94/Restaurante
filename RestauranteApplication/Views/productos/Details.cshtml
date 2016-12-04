@@ -64,3 +64,7 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id_producto }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

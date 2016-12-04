@@ -1,4 +1,6 @@
 ﻿@model RestauranteApplication.Models.productos
+    
+
 
 @{
     ViewBag.Title = "Edit";
@@ -82,4 +84,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
 }
