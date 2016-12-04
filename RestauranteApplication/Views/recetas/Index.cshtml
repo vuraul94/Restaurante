@@ -37,7 +37,13 @@
             @Html.DisplayFor(modelItem => item.productoFK.nombre)
         </td>
         <td>
-            @ViewBag.ing
+            <ul>
+                @foreach (var ingrediente in @ViewBag.ing)
+                {
+                    <li>@ingrediente.nombre</li>
+                }
+            </ul>
+            
         </td>
         <td>
             @Html.ActionLink("Modificar", "Edit", new { id=item.recetas.id_receta }) |

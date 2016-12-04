@@ -42,7 +42,7 @@ namespace RestauranteApplication.Controllers
 
                 foreach (var m in relProdRec)
                 {
-                    productos ingrediente = db.productos.Find(m);
+                    productos ingrediente = db.productos.Find(m.fk_producto);
                     ingredientes.Add(ingrediente);
                 }
 
