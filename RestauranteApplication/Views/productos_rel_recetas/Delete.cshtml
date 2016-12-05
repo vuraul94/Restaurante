@@ -1,0 +1,56 @@
+﻿@model RestauranteApplication.Models.productos_rel_recetas
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+<br />
+<h5>¿Estás seguro que deseas eliminar estos ingredientes?</h5>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productos.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recetas.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recetas.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

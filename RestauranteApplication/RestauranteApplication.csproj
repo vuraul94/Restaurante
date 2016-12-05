@@ -179,6 +179,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\productosController.cs" />
+    <Compile Include="Controllers\productos_rel_recetasController.cs" />
     <Compile Include="Controllers\proveedoresController.cs" />
     <Compile Include="Controllers\recetasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -343,6 +344,11 @@
     <Content Include="Views\recetas\Edit.cshtml" />
     <Content Include="Views\recetas\Index.cshtml" />
     <Content Include="Views\Caja\Index.cshtml" />
+    <Content Include="Views\productos_rel_recetas\Create.cshtml" />
+    <Content Include="Views\productos_rel_recetas\Delete.cshtml" />
+    <Content Include="Views\productos_rel_recetas\Details.cshtml" />
+    <Content Include="Views\productos_rel_recetas\Edit.cshtml" />
+    <Content Include="Views\productos_rel_recetas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

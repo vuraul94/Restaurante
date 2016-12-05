@@ -1,0 +1,50 @@
+﻿@model RestauranteApplication.Models.productos_rel_recetas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Detales de la receta</h3>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productos.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recetas.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recetas.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { fk_producto=Model.productos.id_producto, fk_receta=Model.recetas.id_receta }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>
