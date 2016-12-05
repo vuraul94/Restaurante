@@ -4,67 +4,68 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Detalles</h2>
 
-<div>
-    <h4>clientes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+    <div>
+        <h4>Clientes</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.apellidos)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.apellidos)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.direccion)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.direccion)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.direccion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.direccion)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.telefono)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.telefono)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.telefono)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.telefono)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.moroso)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.moroso)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.moroso)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.moroso)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { id = Model.id_cliente }) |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_cliente }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
 @if (!Request.IsAuthenticated)
 {
     Response.Redirect("~/");

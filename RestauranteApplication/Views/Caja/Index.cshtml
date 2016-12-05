@@ -1,11 +1,12 @@
 ﻿@using RestauranteApplication.Models
 
 
-    <h2>Caja</h2>
 
     <div class="container">
+        <h2>Caja</h2>
 
-        @using (Html.BeginForm("agregar_a_caja", "Caja", FormMethod.Post, new {@class = "well form-horizontal", @id = "contact_form"}))
+
+        @using (Html.BeginForm("agregar_a_caja", "Caja", FormMethod.Post, new {@class = "form-horizontal", @id = "contact_form"}))
         {
             <fieldset>
 
@@ -15,25 +16,24 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                            @Html.Editor("id_producto", new {htmlAttributes = new {@class = "form-control", @name = "id", @placeholder = "ID"}})
+                            @Html.Editor("id_producto", new { htmlAttributes = new { @class = "form-control", @name = "id", @placeholder = "ID" } })
+
+                            
                         </div>
                     </div>
-                </div>
-
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-warning">Agregar <span class="glyphicon glyphicon-plus"></span></button>
                     </div>
                 </div>
+
+                <br /><br /><br />
 
             </fieldset>
         }
     </div>
 
     <div class="container">
-        <table class="table table-striped">
+        <table class="table" >
             <thead class="thead-inverse">
             <tr>
                 <th>#</th>
@@ -57,7 +57,7 @@
         <h2 style="display: inline;">Total: </h2>
         <h3 style="display: inline;">@ViewBag.total</h3>
         <div class="form-group">
-            @using (Html.BeginForm("facturar", "Caja", FormMethod.Post, new {@class = "well form-horizontal", @id = "contact_form"}))
+            @using (Html.BeginForm("facturar", "Caja", FormMethod.Post, new {@class = "form-horizontal", @id = "contact_form"}))
             {
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
@@ -70,9 +70,10 @@
                 </div>
 
                 <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-success">Enviar <span class="glyphicon glyphicon-send"></span></button>
+                <div class="col-md-4" style="margin-top:-35px;">
+                    <button style="width:100%" type="submit" class="btn btn-success">Enviar <span class="glyphicon glyphicon-send"></span></button>
                 </div>
+                <br /><br /><br />
             }
         </div>
     </div>

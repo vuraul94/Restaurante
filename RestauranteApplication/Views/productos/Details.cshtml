@@ -3,68 +3,69 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>productos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
 
-<div>
-    <h4>productos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cantidad)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cantidad)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.cantidad)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.precio)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.precio)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.precio)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.precio)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ingreso)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ingreso)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ingreso)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ingreso)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.vencimiento)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vencimiento)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.vencimiento)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.vencimiento)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.proveedores.nombre)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.proveedores.nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.proveedores.nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.proveedores.nombre)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_producto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-@if (!Request.IsAuthenticated)
-{
-    Response.Redirect("~/");
-}
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { id = Model.id_producto }) |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+    </div>
+    @if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/");
+    }

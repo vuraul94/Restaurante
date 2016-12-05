@@ -3,52 +3,54 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
 
-<h3>Detales de la receta</h3>
+    <h3>Detales de la receta</h3>
 
-<div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.cantidad)
-        </dt>
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.cantidad)
-        </dd>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.unidad)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cantidad)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.unidad)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.unidad)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.productos.nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unidad)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.productos.nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.productos.nombre)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recetas.nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.productos.nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.recetas.nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.recetas.nombre)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Modificar", "Edit", new { fk_producto=Model.productos.id_producto, fk_receta=Model.recetas.id_receta }) |
-    @Html.ActionLink("Regresar a la lista", "Index")
-</p>
-@if (!Request.IsAuthenticated)
-{
-    Response.Redirect("~/");
-}
+            <dd>
+                @Html.DisplayFor(model => model.recetas.nombre)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { fk_producto = Model.productos.id_producto, fk_receta = Model.recetas.id_receta }) |
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </p>
+    </div>
+    @if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/");
+    }

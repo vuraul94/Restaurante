@@ -3,43 +3,45 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
 
-<h3>Detalles de receta</h3>
+    <h3>Detalles de receta</h3>
 
-<div>
-    <br />
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.precio)
-        </dt>
+    <div>
+        <br />
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.precio)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.precio)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.precio)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
-        <dt>
-            <p>Producto</p>
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+            <dt>
+                <p>Producto</p>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fk_producto_padre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.fk_producto_padre)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Modificar", "Edit", new { id = Model.id_receta }) |
-    @Html.ActionLink("Volver a la lista de recetas", "Index")
-</p>
-@if (!Request.IsAuthenticated)
-{
-    Response.Redirect("~/");
-}
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { id = Model.id_receta }) |
+        @Html.ActionLink("Volver a la lista de recetas", "Index")
+    </p>
+    </div>
+    @if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/");
+    }

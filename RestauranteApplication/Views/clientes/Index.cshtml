@@ -4,65 +4,67 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.moroso)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.moroso)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.moroso)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_cliente }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_cliente }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_cliente })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moroso)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.id_cliente }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id_cliente }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_cliente })
+                </td>
+            </tr>
+        }
 
-</table>
-
-@if (!Request.IsAuthenticated)
-{
-    Response.Redirect("~/");
-}
+    </table>
+    </div>
+    @if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/");
+    }

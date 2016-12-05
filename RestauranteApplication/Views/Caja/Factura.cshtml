@@ -1,32 +1,37 @@
 ﻿@using RestauranteApplication.Models
+<br /><br /><br />
 <label>Factura: </label><p style="display: inline;">@ViewBag.id_factura</p>
 <br>
-<label>Cliente: </label><p style="display: inline;">@ViewBag.n_cliente</p>
-<table>
-    <tr>
-        <th>Articulo</th>
-        <th>Precio</th>
-    </tr>
-    @foreach (var producto in (List<productos>)Session["productos_caja"])
-    {
-        <tr>
-            <td>
-                @producto.nombre
-            </td>
-            <td>
-                @producto.precio
-            </td>
-        </tr>
-    }
-    <tr>
-        <td>Total</td>
-        <td>@ViewBag.total</td>
-    </tr>
-    <tr>
-        <td>Cambio</td>
-        <td>@ViewBag.cambio</td>
-    </tr>
-</table>
+<div class="container row">
+    <div class="center-block col-md-12">
+        <b><label>Cliente: </label></b><p style="display: inline;">@ViewBag.n_cliente</p>
+        <table>
+            <tr>
+                <th>Articulo</th>
+                <th>Precio</th>
+            </tr>
+            @foreach (var producto in (List<productos>)Session["productos_caja"])
+            {
+                <tr>
+                    <td>
+                        @producto.nombre
+                    </td>
+                    <td>
+                        @producto.precio
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>Total</td>
+                <td>@ViewBag.total</td>
+            </tr>
+            <tr>
+                <td>Cambio</td>
+                <td>@ViewBag.cambio</td>
+            </tr>
+        </table>
+    </div>
+</div>
 @if (!Request.IsAuthenticated)
 {
     Response.Redirect("~/");

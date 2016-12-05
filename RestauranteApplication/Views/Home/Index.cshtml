@@ -2,33 +2,90 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<!-- <div class="jumbotron">
     <h1>ASP.NET</h1>
     @DateTime.UtcNow.ToString()
     <p class="lead">
         ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.
     </p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+</div> -->
+    <!-- SLIDER -->
+    <div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#mycarousel" data-slide-to="1"></li>
+        <li data-target="#mycarousel" data-slide-to="2"></li>
+    </ol>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="http://www.restaurantelapausa.com/images/cafeteria.jpg" alt="...">
+            <div class="carousel-caption">
+                ...
+            </div>
+        </div>
+        <div class="item">
+            <img src="http://estaticos.qdq.com/swdata/photos/486/486981590/e521fd02d60a48aca693757d996ae145.jpg" alt="...">
+            <div class="carousel-caption">
+                ...
+            </div>
+        </div>
+        <div class="item">
+            <img src="http://www.15minutos.pe/wp-content/uploads/2015/07/cafe-800x450.png" alt="...">
+            <div class="carousel-caption">
+                ...
+            </div>
+        </div>
+        
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
+<style>
+    .full-screen {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+</style>
+    <!-- FIN SLIDER -->
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script>    
+    var $item = $('.carousel .item');
+    var $wHeight = $(window).height();
+    $item.eq(0).addClass('active');
+    $item.height($wHeight);
+    $item.addClass('full-screen');
+
+    $('.carousel img').each(function () {
+        var $src = $(this).attr('src');
+        var $color = $(this).attr('data-color');
+        $(this).parent().css({
+            'background-image': 'url(' + $src + ')',
+            'background-color': $color
+        });
+        $(this).remove();
+    });
+
+    $(window).on('resize', function () {
+        $wHeight = $(window).height();
+        $item.height($wHeight);
+    });
+
+    $('.carousel').carousel({
+        interval: 5000
+    })
+</script>
+<!-- FIN SLIDER -->

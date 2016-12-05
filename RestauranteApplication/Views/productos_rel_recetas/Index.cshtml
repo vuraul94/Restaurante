@@ -4,53 +4,56 @@
     ViewBag.Title = "Index";
 }
 
-<h3>Ingredientes de las recetas</h3>
+<div class="container">
+    <h3>Ingredientes de las recetas</h3>
 
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Crear nuevo", "Create")
+    </p>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.productos.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.recetas.nombre)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productos.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recetas.nombre)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productos.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recetas.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Edit", new { fk_producto=item.productos.id_producto,fk_receta=item.recetas.id_receta }) |
-            @Html.ActionLink("Detalles", "Details", new { fk_producto = item.productos.id_producto, fk_receta = item.recetas.id_receta }) |
-            @Html.ActionLink("Eliminar", "Delete", new { fk_producto = item.productos.id_producto, fk_receta = item.recetas.id_receta })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productos.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recetas.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { fk_producto = item.productos.id_producto, fk_receta = item.recetas.id_receta }) |
+                    @Html.ActionLink("Detalles", "Details", new { fk_producto = item.productos.id_producto, fk_receta = item.recetas.id_receta }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { fk_producto = item.productos.id_producto, fk_receta = item.recetas.id_receta })
+                </td>
+            </tr>
+        }
 
-</table>
-@if (!Request.IsAuthenticated)
-{
-    Response.Redirect("~/");
-}
+    </table>
+    @if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/");
+    }
+     </div>

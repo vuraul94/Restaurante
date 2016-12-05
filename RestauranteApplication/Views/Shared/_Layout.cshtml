@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Producto.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -17,16 +18,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href=""><img id="image" src="/images/logoCafe.png" alt="Alternate Text" width="90px"/></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Caja", "Index", "Caja")</li>
                         <li>@Html.ActionLink("Productos", "Index", "productos")</li>
                         <li>@Html.ActionLink("Recetas", "Index", "recetas")</li>
+                        <li>@Html.ActionLink("Ingredientes", "Index", "productos_rel_recetas")</li>
                         <li>@Html.ActionLink("Proveedores", "Index", "proveedores")</li>
                         <li>@Html.ActionLink("Clientes", "Index", "clientes")</li>
                     }
@@ -35,12 +37,8 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="container-fluid">
+        @RenderBody()       
     </div>
 
     @Scripts.Render("~/bundles/jquery")

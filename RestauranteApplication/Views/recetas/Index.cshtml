@@ -4,56 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Recetas</h2>
+<div class="container">
+    <h2>Recetas</h2>
 
-<p>
-    @Html.ActionLink("Agregar receta", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.recetas.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.recetas.nombre)
-        </th>
-        <th>
-            Producto
-        </th>
-        <th>
-            Ingredientes
-        </th>
-    </tr>
+    <p>
+        @Html.ActionLink("Agregar receta", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.recetas.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recetas.nombre)
+            </th>
+            <th>
+                Producto
+            </th>
+            <th>
+                Ingredientes
+            </th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.recetas.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recetas.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productoFK.nombre)
-        </td>
-        <td>
-            <ul>
-                @foreach (var ingrediente in @ViewBag.ing)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recetas.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recetas.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productoFK.nombre)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var ingrediente in @ViewBag.ing)
                 {
-                    <li>@ingrediente.nombre</li>
-                }
-            </ul>
-            
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Edit", new { id=item.recetas.id_receta }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.recetas.id_receta }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.recetas.id_receta })
-        </td>
-    </tr>
-}
+                            <li>@ingrediente.nombre</li>
+                        }
+                    </ul>
 
-</table>
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.recetas.id_receta }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.recetas.id_receta }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.recetas.id_receta })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 @if (!Request.IsAuthenticated)
 {
     Response.Redirect("~/");

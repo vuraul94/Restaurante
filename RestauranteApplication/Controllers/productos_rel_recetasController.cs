@@ -119,9 +119,9 @@ namespace RestauranteApplication.Controllers
         // POST: productos_rel_recetas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int fk_producto, int fk_receta)
         {
-            productos_rel_recetas productos_rel_recetas = db.productos_rel_recetas.Find(id);
+            productos_rel_recetas productos_rel_recetas = db.productos_rel_recetas.Find(fk_producto, fk_receta);
             db.productos_rel_recetas.Remove(productos_rel_recetas);
             db.SaveChanges();
             return RedirectToAction("Index");
