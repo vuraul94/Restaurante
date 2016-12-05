@@ -64,6 +64,11 @@
                     @Html.Editor("id_cliente", new {htmlAttributes = new {@class = "form-control", @name = "id_cliente", @placeholder = "ID CLIENTE"}})
                 </div>
 
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    @Html.Editor("monto_pago", new { htmlAttributes = new { @class = "form-control", @name = "monto_pago", @placeholder = "Monto a pagar", @type="number" } })
+                </div>
+
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-success">Enviar <span class="glyphicon glyphicon-send"></span></button>

@@ -50,3 +50,7 @@
 }
 
 </table>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}

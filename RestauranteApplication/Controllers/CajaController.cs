@@ -45,7 +45,7 @@ namespace RestauranteApplication.Controllers
             return View("Index");
         }
 
-        public ActionResult facturar(string id_cliente)
+        public ActionResult facturar(string id_cliente, decimal monto_pago)
         {
             string id_factura = "fact-" + DateTime.UtcNow.ToString().Replace("/", "").Replace(" ", "").Replace(":", "").Replace("am", "").Replace("pm", "");
             facturas factura = new facturas();
@@ -63,10 +63,23 @@ namespace RestauranteApplication.Controllers
             }
             db.SaveChanges();
 
-            productos_en_caja = new List<productos>();
-            Session["productos_caja"] = productos_en_caja;
-            ViewBag.total = 0;
-            return View("Index");
+            if (id_cliente == "")
+            {
+                ViewBag.n_cliente = "Cliente X";
+            }
+            else
+            {
+                ViewBag.n_cliente = db.clientes.Find(id_cliente).nombre;
+            }
+            ViewBag.id_factura= id_factura;
+            ViewBag.total = (decimal?) Session["total"];
+            ViewBag.cambio = monto_pago-ViewBag.total;
+            return View("Factura");
+        }
+
+        public ActionResult Factura()
+        {
+            return View();
         }
 
     }

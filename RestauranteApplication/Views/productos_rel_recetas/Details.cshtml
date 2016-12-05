@@ -48,3 +48,7 @@
     @Html.ActionLink("Modificar", "Edit", new { fk_producto=Model.productos.id_producto, fk_receta=Model.recetas.id_receta }) |
     @Html.ActionLink("Regresar a la lista", "Index")
 </p>
+@if (!Request.IsAuthenticated)
+{
+    Response.Redirect("~/");
+}
